@@ -26,7 +26,7 @@ const env = cleanEnv(process.env, {
     desc: "Log format",
   }),
   ORIGINS: str({
-    desc: "Comma separated list of allowed origins",
+    desc: "Regex for allowed origins",
   }),
   CREDENTIALS: bool({
     desc: "Allow credentials",
