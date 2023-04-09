@@ -56,8 +56,6 @@ There is a priority how the configuration is loaded. The priority is:
     -   .env
     -   .env.example
 
--   Note that you don't need to use `.env` files. You can just set the environment variables in your shell.
-
 | Variable    | Description                                                                                              |
 | ----------- | -------------------------------------------------------------------------------------------------------- |
 | PORT        | The port the server will listen on.                                                                      |
@@ -66,6 +64,25 @@ There is a priority how the configuration is loaded. The priority is:
 | CREDENTIALS | CORS credentials.                                                                                        |
 | LOG_FORMAT  | The format of the logs. The app uses morgan to log http requests. You can use any of the morgan formats. |
 | LOG_DIR     | The directory where the logs will be saved. (Recommended to use absolute path)                           |
+
+_Note: that you don't need to use `.env` files. You can just set the environment variables in your shell._
+
+To access and validate the environment variables, the app also uses the [envalid](https://npmjs.com/package/envalid) package. Following is an example of how to use the config file:
+
+```ts
+// file: src/config/index.ts
+import { cleanEnv, str } from "envalid";
+
+const env = cleanEnv(process.env, {
+    // ...already declared variables,
+
+    SOME_NEW_VARIABLE: str({ desc: "description" }),
+});
+
+export const { ...alreadyDeclaredVariables, SOME_NEW_VARIABLE } = env;
+```
+
+View the [envalid](https://npmjs.com/package/envalid) docs for more info.
 
 ### Docker
 
