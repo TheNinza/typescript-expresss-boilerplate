@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  express-server:
+    image: express-server-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - express-server-logs:/logs
+
+volumes:
+  express-server-logs:
+    driver: local
