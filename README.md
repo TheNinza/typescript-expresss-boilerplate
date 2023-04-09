@@ -13,7 +13,7 @@ This starter is as minimal as possible. It doesn't include any database or authe
 
 The app uses a consistent response format. The response format is:
 
-```json
+```ts
 {
     "status": "success" | "error",
     "statusCode": number,
